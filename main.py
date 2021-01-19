@@ -48,7 +48,8 @@ if __name__ == '__main__':
         if ball.rect.x >= window_size[0]-ball_radius:
             ball.velocity[0] = -ball.velocity[0]
         if ball.rect.x <= 0:
-            ball.velocity[0] = -ball.velocity[0]
+            # ball.velocity[0] = -ball.velocity[0]
+            break
         if ball.rect.y > window_size[1]-ball_radius:
             ball.velocity[1] = -ball.velocity[1]
         if ball.rect.y < 0:
