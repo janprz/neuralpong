@@ -21,8 +21,8 @@ from game_utils.utils import add_to_sprites_list
 
 
 runs_per_net = 5
-simulation_seconds = 60.0
-framerate = 1000.0
+simulation_seconds = 25.0
+framerate = 4000.0
 
 
 # Use the NN network phenotype and the discrete actuator force function.
@@ -66,14 +66,19 @@ def eval_genome(genome, config):
                     if event.key == pygame.K_x:
                         run = False
 
-            inputs = [paddle.rect.y/window_size[1],
-                      ball.rect.x/window_size[0],ball.rect.y/window_size[1],(ball.velocity[0]+ball_velocity)/(2*ball_velocity),(ball.velocity[1]+ball_velocity)/(2*ball_velocity)]
+            inputs = [paddle.rect.y/window_size[1], ball.rect.y/window_size[1],
+                      (ball.velocity[1]+ball_velocity)/(2*ball_velocity)]
             action = net.activate(inputs)
             # print("inputs",inputs)
             keys = pygame.key.get_pressed()
-            if np.argmax(action) == 0:
+            # if np.argmax(action) == 0:
+            #     paddle.move_up(5)
+            # if np.argmax(action) == 1:
+            #     paddle.move_down(5)
+
+            if action[0] > 0.5:
                 paddle.move_up(5)
-            if np.argmax(action) == 1:
+            if action[0] <= 0.5:
                 paddle.move_down(5)
 
             sprites_list.update()
