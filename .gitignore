@@ -1,1 +1,6 @@
 /.idea/*
+*.svg
+*.png
+*.gv
+*.pyc
+/game_objects/__pycache__/*

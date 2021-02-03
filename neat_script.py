@@ -111,7 +111,7 @@ def eval_genome(genome, config):
         # fitnesses.append(fitness)
 
     # The genome's fitness is its worst performance across all runs.
-    return hits/(hits+miss)
+    return hits/(hits+miss) + sim_time
 
 
 def eval_genomes(genomes, config):
@@ -146,15 +146,15 @@ def run():
     visualize.plot_stats(stats, ylog=True, view=True, filename="feedforward-fitness.svg")
     visualize.plot_species(stats, view=True, filename="feedforward-speciation.svg")
 
-    node_names = {-1: 'x', -2: 'dx', -3: 'theta', -4: 'dtheta', 0: 'control'}
+    node_names = {-1: 'paddle_y', -2: 'ball_y', -3: 'ball_dy', 0: 'control'}
     visualize.draw_net(config, winner, True, node_names=node_names)
 
     visualize.draw_net(config, winner, view=True, node_names=node_names,
                        filename="winner-feedforward.gv")
-    visualize.draw_net(config, winner, view=True, node_names=node_names,
-                       filename="winner-feedforward-enabled.gv", show_disabled=False)
-    visualize.draw_net(config, winner, view=True, node_names=node_names,
-                       filename="winner-feedforward-enabled-pruned.gv", show_disabled=False, prune_unused=True)
+    # visualize.draw_net(config, winner, view=True, node_names=node_names,
+    #                    filename="winner-feedforward-enabled.gv", show_disabled=False)
+    # visualize.draw_net(config, winner, view=True, node_names=node_names,
+    #                    filename="winner-feedforward-enabled-pruned.gv", show_disabled=False, prune_unused=True)
 
 
 if __name__ == '__main__':

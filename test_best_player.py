@@ -17,7 +17,7 @@ from game_objects.ball import Ball
 from game_objects.paddle import Paddle
 from game_utils.utils import add_to_sprites_list
 
-with open('winner-feedforward_1', 'rb') as f:
+with open('winner-feedforward_best', 'rb') as f:
     c = pickle.load(f)
 
 print('Loaded genome:')
@@ -34,7 +34,7 @@ config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
 net = neat.nn.FeedForwardNetwork.create(c, config)
 
 simulation_seconds = 50
-framerate = 60.0
+framerate = 1200.0
 miss = 0.0
 hits = 0.0
 WHITE = (255, 255, 255)
@@ -43,7 +43,7 @@ pygame.init()
 
 window_size = (700, 500)
 ball_radius = 20
-ball_velocity = 4
+ball_velocity = 2
 display = pygame.display.set_mode(window_size)
 pygame.display.set_caption("neural pong")
 timer = pygame.time.Clock()
@@ -113,4 +113,4 @@ while sim_time < simulation_seconds and run:
     sim_time += 1.0/framerate
 
 
-print('Agent played for {0:.1f} of {} seconds'.format(sim_time,simulation_seconds))
+print('Agent played for {} of {} seconds'.format(sim_time,simulation_seconds))

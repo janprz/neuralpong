@@ -1,5 +1,3 @@
-import pygame
-
 
 def add_to_sprites_list(sprites_list,sprites_array):
     for sprite in sprites_array:
